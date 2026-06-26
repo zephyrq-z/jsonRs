@@ -1,0 +1,47 @@
+{
+  "name": "json-rs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Lightweight, blazing-fast JSON / XML desktop viewer built with Tauri 2 + React 19",
+  "author": "zephyrq-z",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zephyrq-z/jsonRs.git"
+  },
+  "keywords": [
+    "json",
+    "xml",
+    "viewer",
+    "tauri",
+    "desktop",
+    "tree-view"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "CI=true tauri"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "@tanstack/react-virtual": "^3.14.2",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2.7.1",
+    "@tauri-apps/plugin-fs": "^2.5.1",
+    "@tauri-apps/plugin-opener": "^2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^22",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  }
+}
