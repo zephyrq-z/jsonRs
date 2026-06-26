@@ -1,31 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
-    <!-- Neon pink glow -->
-    <filter id="glowPink" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-    <!-- Neon cyan glow -->
-    <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-    <!-- Stronger glow for center -->
-    <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="16" result="blur" />
+    <filter id="neon" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur2" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="48" result="blur3" />
       <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="blur" />
+        <feMergeNode in="blur3" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-    <!-- Background gradient -->
-    <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#1a1a2e" />
-      <stop offset="100%" stop-color="#0a0a12" />
-    </radialGradient>
-    <!-- RGB gradient for braces -->
-    <linearGradient id="rgbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="rgb" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff2d95" />
       <stop offset="33%" stop-color="#b44dff" />
       <stop offset="66%" stop-color="#00e5ff" />
@@ -34,42 +20,22 @@
   </defs>
 
   <!-- Background -->
-  <rect width="1024" height="1024" rx="180" fill="url(#bgGrad)" />
+  <rect width="1024" height="1024" rx="180" fill="#0a0a14" />
 
-  <!-- Subtle grid pattern -->
-  <g opacity="0.04" stroke="#00e5ff" stroke-width="0.5">
-    <line x1="0" y1="256" x2="1024" y2="256" />
-    <line x1="0" y1="512" x2="1024" y2="512" />
-    <line x1="0" y1="768" x2="1024" y2="768" />
-    <line x1="256" y1="0" x2="256" y2="1024" />
-    <line x1="512" y1="0" x2="512" y2="1024" />
-    <line x1="768" y1="0" x2="768" y2="1024" />
+  <!-- Subtle edge glow -->
+  <rect x="4" y="4" width="1016" height="1016" rx="178" fill="none" stroke="url(#rgb)" stroke-width="3" opacity="0.3" />
+
+  <!-- Bold braces -->
+  <g fill="none" stroke="url(#rgb)" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon)">
+    <path d="M340 260C240 260 180 320 180 420v184c0 100-60 160-60 160 60 0 60 60 60 160v184c0 100 60 160 160 160" />
+    <path d="M684 260C784 260 844 320 844 420v184c0 100 60 160 60 160-60 0-60 60-60 160v184c0 100-60 160-160 160" />
   </g>
 
-  <!-- Left brace -->
-  <g filter="url(#glowStrong)">
-    <path d="M340 280C260 280 200 340 200 420v90c0 65-40 120-100 140 60 20 100 75 100 140v90c0 80 60 140 140 140"
-          fill="none" stroke="url(#rgbGrad)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-
-  <!-- Right brace -->
-  <g filter="url(#glowStrong)">
-    <path d="M684 280C764 280 824 340 824 420v90c0 65 40 120 100 140-60 20-100 75-100 140v90c0 80-60 140-140 140"
-          fill="none" stroke="url(#rgbGrad)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-
-  <!-- Center colon -->
-  <g filter="url(#glowStrong)">
-    <circle cx="512" cy="350" r="18" fill="#ff2d95" />
-    <circle cx="512" cy="450" r="18" fill="#b44dff" />
-    <circle cx="512" cy="550" r="18" fill="#00e5ff" />
-    <circle cx="512" cy="650" r="18" fill="#ff2d95" />
-  </g>
-
-  <!-- "R" badge in bottom-right -->
-  <g filter="url(#glowPink)">
-    <rect x="720" y="760" width="120" height="120" rx="24" fill="none" stroke="#ff2d95" stroke-width="6" />
-    <text x="780" y="840" font-family="'SF Pro Display', system-ui, sans-serif" font-size="64" font-weight="900"
-          fill="#ff2d95" text-anchor="middle" dominant-baseline="central">R</text>
+  <!-- Center dots -->
+  <g filter="url(#neon)">
+    <circle cx="512" cy="340" r="24" fill="#ff2d95" />
+    <circle cx="512" cy="460" r="24" fill="#b44dff" />
+    <circle cx="512" cy="580" r="24" fill="#00e5ff" />
+    <circle cx="512" cy="700" r="24" fill="#ff2d95" />
   </g>
 </svg>
