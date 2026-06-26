@@ -26,19 +26,43 @@ import { PasteDialog } from "./components/PasteDialog";
 
 function NeonFrame() {
   const ref = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // HSL-based neon colors for smooth interpolation
+    const neonSat = 95;
+    const lightAlpha = 0.25;
+    const darkAlpha = 0.35;
+
+    const toRgba = (h: number, alpha: number) => {
+      // Convert HSL to RGB for better gradient rendering
+      const s = neonSat / 100;
+      const l = 0.55; // bright neon
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m = l - c / 2;
+      let r = 0, g = 0, b = 0;
+      if (h < 60) { r = c; g = x; }
+      else if (h < 120) { r = x; g = c; }
+      else if (h < 180) { g = c; b = x; }
+      else if (h < 240) { g = x; b = c; }
+      else if (h < 300) { r = x; b = c; }
+      else { r = c; b = x; }
+      return `rgba(${Math.round((r+m)*255)},${Math.round((g+m)*255)},${Math.round((b+m)*255)},${alpha})`;
+    };
+
     let start = 0;
-    const speed = 0.03;
+    const speed = 0.02; // hue degrees per ms
+    const isDark = document.documentElement.classList.contains("dark");
+    const alpha = isDark ? darkAlpha : lightAlpha;
+
     const animate = (ts: number) => {
       if (!start) start = ts;
-      const angle = ((ts - start) * speed) % 360;
+      const baseHue = ((ts - start) * speed) % 360;
       if (ref.current) {
-        ref.current.style.setProperty("--neon-angle", `${angle}deg`);
-      }
-      if (glowRef.current) {
-        glowRef.current.style.setProperty("--neon-angle", `${angle}deg`);
+        ref.current.style.setProperty("--corner-tl", toRgba((baseHue + 0) % 360, alpha));
+        ref.current.style.setProperty("--corner-tr", toRgba((baseHue + 90) % 360, alpha));
+        ref.current.style.setProperty("--corner-br", toRgba((baseHue + 180) % 360, alpha));
+        ref.current.style.setProperty("--corner-bl", toRgba((baseHue + 270) % 360, alpha));
       }
       raf = requestAnimationFrame(animate);
     };
@@ -46,12 +70,7 @@ function NeonFrame() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  return (
-    <>
-      <div ref={glowRef} className="neon-frame-glow" />
-      <div ref={ref} className="neon-frame" />
-    </>
-  );
+  return <div ref={ref} className="neon-ambient" />;
 }
 
 function App() {

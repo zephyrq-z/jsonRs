@@ -295,79 +295,50 @@ html, body, #root {
 }
 
 /* ========================================
-   ROG Neon Window Frame — rotating RGB border
+   ROG Ambient Edge Lighting — soft gradient glow
    ======================================== */
 
-.neon-frame {
+.neon-ambient {
+  --corner-tl: rgba(255,45,149,0.25);
+  --corner-tr: rgba(180,77,255,0.25);
+  --corner-br: rgba(0,229,255,0.20);
+  --corner-bl: rgba(57,255,20,0.18);
+
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  border: 6px solid transparent;
-  background: conic-gradient(
-    from var(--neon-angle, 0deg),
-    var(--neon-pink),
-    var(--neon-purple),
-    var(--neon-cyan),
-    var(--neon-green),
-    var(--neon-pink)
-  ) border-box;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: neonFrameBreathe 2.5s ease-in-out infinite;
-  filter: blur(12px);
-  opacity: 0.7;
+  background:
+    radial-gradient(ellipse 400px 300px at 0% 0%, var(--corner-tl) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 300px at 100% 0%, var(--corner-tr) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 300px at 100% 100%, var(--corner-br) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 300px at 0% 100%, var(--corner-bl) 0%, transparent 60%),
+    /* Edge midpoints for continuous coverage */
+    radial-gradient(ellipse 200px 400px at 50% 0%, var(--corner-tl) 0%, transparent 70%),
+    radial-gradient(ellipse 200px 400px at 100% 50%, var(--corner-tr) 0%, transparent 70%),
+    radial-gradient(ellipse 200px 400px at 50% 100%, var(--corner-br) 0%, transparent 70%),
+    radial-gradient(ellipse 200px 400px at 0% 50%, var(--corner-bl) 0%, transparent 70%);
+  animation: ambientBreathe 3s ease-in-out infinite;
 }
 
-/* Outer glow layer — wider, softer */
-.neon-frame-glow {
-  position: fixed;
-  inset: -4px;
-  pointer-events: none;
-  z-index: 9998;
-  border: 12px solid transparent;
-  background: conic-gradient(
-    from calc(var(--neon-angle, 0deg) + 180deg),
-    var(--neon-purple),
-    var(--neon-cyan),
-    var(--neon-green),
-    var(--neon-pink),
-    var(--neon-purple)
-  ) border-box;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: neonFrameBreathe 3s ease-in-out infinite;
-  filter: blur(24px);
-  opacity: 0.35;
+.dark .neon-ambient {
+  --corner-tl: rgba(255,45,149,0.35);
+  --corner-tr: rgba(180,77,255,0.30);
+  --corner-br: rgba(0,229,255,0.25);
+  --corner-bl: rgba(57,255,20,0.22);
+  background:
+    radial-gradient(ellipse 500px 350px at 0% 0%, var(--corner-tl) 0%, transparent 55%),
+    radial-gradient(ellipse 500px 350px at 100% 0%, var(--corner-tr) 0%, transparent 55%),
+    radial-gradient(ellipse 500px 350px at 100% 100%, var(--corner-br) 0%, transparent 55%),
+    radial-gradient(ellipse 500px 350px at 0% 100%, var(--corner-bl) 0%, transparent 55%),
+    radial-gradient(ellipse 250px 500px at 50% 0%, var(--corner-tl) 0%, transparent 65%),
+    radial-gradient(ellipse 250px 500px at 100% 50%, var(--corner-tr) 0%, transparent 65%),
+    radial-gradient(ellipse 250px 500px at 50% 100%, var(--corner-br) 0%, transparent 65%),
+    radial-gradient(ellipse 250px 500px at 0% 50%, var(--corner-bl) 0%, transparent 65%);
 }
 
-.dark .neon-frame {
-  filter: blur(16px);
-  opacity: 0.85;
-  animation-name: neonFrameBreatheDark;
-  animation-duration: 2s;
-}
-
-.dark .neon-frame-glow {
-  filter: blur(32px);
-  opacity: 0.5;
-  animation-name: neonFrameBreatheDark;
-  animation-duration: 2.5s;
-}
-
-@keyframes neonFrameBreathe {
-  0%, 100% { opacity: 0.45; }
-  50%      { opacity: 0.85; }
-}
-
-@keyframes neonFrameBreatheDark {
-  0%, 100% { opacity: 0.6; }
+@keyframes ambientBreathe {
+  0%, 100% { opacity: 0.7; }
   50%      { opacity: 1; }
 }
 
