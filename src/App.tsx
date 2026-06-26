@@ -25,18 +25,19 @@ import type { SearchResult, SearchOptions, JsonNode, XmlElement, FileFormat, Vie
 import { PasteDialog } from "./components/PasteDialog";
 
 function NeonFrame() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ambientRef = useRef<HTMLDivElement>(null);
+  const edgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // HSL-based neon colors for smooth interpolation
     const neonSat = 95;
     const lightAlpha = 0.25;
     const darkAlpha = 0.35;
+    const lightEdge = 0.15;
+    const darkEdge = 0.22;
 
     const toRgba = (h: number, alpha: number) => {
-      // Convert HSL to RGB for better gradient rendering
       const s = neonSat / 100;
-      const l = 0.55; // bright neon
+      const l = 0.55;
       const c = (1 - Math.abs(2 * l - 1)) * s;
       const x = c * (1 - Math.abs((h / 60) % 2 - 1));
       const m = l - c / 2;
@@ -51,18 +52,27 @@ function NeonFrame() {
     };
 
     let start = 0;
-    const speed = 0.02; // hue degrees per ms
+    const speed = 0.02;
     const isDark = document.documentElement.classList.contains("dark");
     const alpha = isDark ? darkAlpha : lightAlpha;
+    const edgeAlpha = isDark ? darkEdge : lightEdge;
 
     const animate = (ts: number) => {
       if (!start) start = ts;
       const baseHue = ((ts - start) * speed) % 360;
-      if (ref.current) {
-        ref.current.style.setProperty("--corner-tl", toRgba((baseHue + 0) % 360, alpha));
-        ref.current.style.setProperty("--corner-tr", toRgba((baseHue + 90) % 360, alpha));
-        ref.current.style.setProperty("--corner-br", toRgba((baseHue + 180) % 360, alpha));
-        ref.current.style.setProperty("--corner-bl", toRgba((baseHue + 270) % 360, alpha));
+      // Edge layer: slower, offset hue cycle for independent gentle drift
+      const edgeHue = ((ts - start) * speed * 0.6 + 45) % 360;
+      if (ambientRef.current) {
+        ambientRef.current.style.setProperty("--corner-tl", toRgba((baseHue + 0) % 360, alpha));
+        ambientRef.current.style.setProperty("--corner-tr", toRgba((baseHue + 90) % 360, alpha));
+        ambientRef.current.style.setProperty("--corner-br", toRgba((baseHue + 180) % 360, alpha));
+        ambientRef.current.style.setProperty("--corner-bl", toRgba((baseHue + 270) % 360, alpha));
+      }
+      if (edgeRef.current) {
+        edgeRef.current.style.setProperty("--edge-tl", toRgba((edgeHue + 0) % 360, edgeAlpha));
+        edgeRef.current.style.setProperty("--edge-tr", toRgba((edgeHue + 90) % 360, edgeAlpha));
+        edgeRef.current.style.setProperty("--edge-br", toRgba((edgeHue + 180) % 360, edgeAlpha));
+        edgeRef.current.style.setProperty("--edge-bl", toRgba((edgeHue + 270) % 360, edgeAlpha));
       }
       raf = requestAnimationFrame(animate);
     };
@@ -70,7 +80,12 @@ function NeonFrame() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  return <div ref={ref} className="neon-ambient" />;
+  return (
+    <>
+      <div ref={ambientRef} className="neon-ambient" />
+      <div ref={edgeRef} className="neon-edge" />
+    </>
+  );
 }
 
 function App() {
