@@ -26,15 +26,19 @@ import { PasteDialog } from "./components/PasteDialog";
 
 function NeonFrame() {
   const ref = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let start = 0;
-    const speed = 0.03; // degrees per ms
+    const speed = 0.03;
     const animate = (ts: number) => {
       if (!start) start = ts;
       const angle = ((ts - start) * speed) % 360;
       if (ref.current) {
         ref.current.style.setProperty("--neon-angle", `${angle}deg`);
+      }
+      if (glowRef.current) {
+        glowRef.current.style.setProperty("--neon-angle", `${angle}deg`);
       }
       raf = requestAnimationFrame(animate);
     };
@@ -42,7 +46,12 @@ function NeonFrame() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  return <div ref={ref} className="neon-frame" />;
+  return (
+    <>
+      <div ref={glowRef} className="neon-frame-glow" />
+      <div ref={ref} className="neon-frame" />
+    </>
+  );
 }
 
 function App() {
