@@ -24,6 +24,27 @@ import type { RecentFile } from "./types";
 import type { SearchResult, SearchOptions, JsonNode, XmlElement, FileFormat, ViewMode } from "./types";
 import { PasteDialog } from "./components/PasteDialog";
 
+function NeonFrame() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let start = 0;
+    const speed = 0.03; // degrees per ms
+    const animate = (ts: number) => {
+      if (!start) start = ts;
+      const angle = ((ts - start) * speed) % 360;
+      if (ref.current) {
+        ref.current.style.setProperty("--neon-angle", `${angle}deg`);
+      }
+      raf = requestAnimationFrame(animate);
+    };
+    let raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return <div ref={ref} className="neon-frame" />;
+}
+
 function App() {
   const { isDark, toggleTheme } = useTheme();
   const {
@@ -320,6 +341,7 @@ function App() {
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
       >
+        <NeonFrame />
         {/* Titlebar */}
         <div
           className="drag-region flex items-center shrink-0"

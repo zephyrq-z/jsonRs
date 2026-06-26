@@ -294,13 +294,64 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ========================================
+   ROG Neon Window Frame — rotating RGB border
+   ======================================== */
+
+.neon-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border: 3px solid transparent;
+  background: conic-gradient(
+    from var(--neon-angle, 0deg),
+    var(--neon-pink),
+    var(--neon-purple),
+    var(--neon-cyan),
+    var(--neon-green),
+    var(--neon-pink)
+  ) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: neonFrameBreathe 2.5s ease-in-out infinite;
+  filter: blur(5px);
+  opacity: 0.5;
+}
+
+.dark .neon-frame {
+  filter: blur(8px);
+  opacity: 0.7;
+  animation: neonFrameBreathe 2s ease-in-out infinite;
+}
+
+@keyframes neonFrameBreathe {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.75; }
+}
+
+.dark .neon-frame {
+  filter: blur(8px);
+  opacity: 0.7;
+  animation-name: neonFrameBreatheDark;
+  animation-duration: 2s;
+}
+
+@keyframes neonFrameBreatheDark {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.9; }
+}
+
 /* Subtle scan line overlay in dark mode */
 .dark #root::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9998;
   background: repeating-linear-gradient(
     0deg,
     transparent,
