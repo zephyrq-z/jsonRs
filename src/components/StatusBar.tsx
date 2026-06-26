@@ -25,7 +25,7 @@ export function StatusBar({ activeTab, searchResultCount, isDark }: StatusBarPro
         <>
           {/* Format badge */}
           <span
-            className="inline-flex items-center px-1.5 py-px rounded font-semibold tracking-wide uppercase"
+            className="format-badge inline-flex items-center px-1.5 py-px rounded font-semibold tracking-wide uppercase"
             style={{
               fontSize: 9.5,
               background: "var(--accent-subtle)",
@@ -35,8 +35,12 @@ export function StatusBar({ activeTab, searchResultCount, isDark }: StatusBarPro
             {activeTab.format}
           </span>
 
+          <span className="status-dot" />
+
           {/* File size */}
           <span>{formatSize(activeTab.fileSize)}</span>
+
+          <span className="status-dot" />
 
           {/* Path */}
           <span className="truncate max-w-[320px]" title={activeTab.path}>
@@ -45,16 +49,19 @@ export function StatusBar({ activeTab, searchResultCount, isDark }: StatusBarPro
 
           {/* Search results */}
           {searchResultCount > 0 && (
-            <span
-              className="inline-flex items-center gap-1 px-1.5 py-px rounded font-semibold"
-              style={{
-                fontSize: 9.5,
-                background: "rgba(240, 165, 0, 0.10)",
-                color: "var(--warning)",
-              }}
-            >
-              {searchResultCount} matches
-            </span>
+            <>
+              <span className="status-dot" />
+              <span
+                className="inline-flex items-center gap-1 px-1.5 py-px rounded font-semibold"
+                style={{
+                  fontSize: 9.5,
+                  background: "rgba(240, 165, 0, 0.10)",
+                  color: "var(--warning)",
+                }}
+              >
+                {searchResultCount} matches
+              </span>
+            </>
           )}
         </>
       ) : (
@@ -64,15 +71,16 @@ export function StatusBar({ activeTab, searchResultCount, isDark }: StatusBarPro
       <div className="flex-1" />
 
       {/* Theme indicator */}
-      <span className="inline-flex items-center gap-1">
+      <span className="inline-flex items-center gap-1.5">
         <span
+          className="animate-breathe"
           style={{
             width: 6,
             height: 6,
             borderRadius: "50%",
-            background: isDark ? "var(--accent-soft)" : "var(--warning)",
+            background: isDark ? "var(--neon-pink)" : "var(--warning)",
             boxShadow: isDark
-              ? "0 0 4px var(--accent-soft)"
+              ? "0 0 6px var(--neon-pink), 0 0 12px var(--accent-glow)"
               : "0 0 4px rgba(240, 165, 0, 0.3)",
           }}
         />

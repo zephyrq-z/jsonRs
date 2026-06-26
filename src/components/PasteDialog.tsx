@@ -44,10 +44,10 @@ export const PasteDialog: FC<PasteDialogProps> = ({ onConfirm, onClose }) => {
 
   return (
     <div className="dialog-overlay" onClick={handleOverlayClick}>
-      <div className="dialog-panel" style={{ width: 560, maxWidth: "90vw" }}>
+      <div className="dialog-panel rgb-border" style={{ width: 640, maxWidth: "92vw" }}>
         {/* Header */}
         <div
-          className="flex items-center justify-between px-6 py-4"
+          className="flex items-center justify-between px-8 py-5"
           style={{ borderBottom: "1px solid var(--border-subtle)" }}
         >
           <h2
@@ -74,11 +74,11 @@ export const PasteDialog: FC<PasteDialogProps> = ({ onConfirm, onClose }) => {
         </div>
 
         {/* Textarea */}
-        <div className="px-5 py-5">
+        <div className="px-8 py-6">
           <textarea
             ref={textareaRef}
-            className="paste-textarea w-full"
-            style={{ minHeight: 200, padding: "12px 14px" }}
+            className="paste-textarea w-full neon-glow-hover"
+            style={{ minHeight: 300, padding: "16px 18px" }}
             placeholder="Paste your JSON or XML content here..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -115,36 +115,22 @@ export const PasteDialog: FC<PasteDialogProps> = ({ onConfirm, onClose }) => {
 
         {/* Footer */}
         <div
-          className="flex items-center justify-end gap-2 px-6 py-4"
+          className="flex items-center justify-end gap-2 px-8 py-5"
           style={{ borderTop: "1px solid var(--border-subtle)" }}
         >
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-md text-[12px] font-medium transition-colors"
-            style={{
-              color: "var(--text-secondary)",
-              background: "transparent",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-2)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            className="btn-secondary px-4 py-1.5 text-[12px]"
           >
             Cancel
           </button>
           <button
             onClick={handleConfirm}
             disabled={!isValid}
-            className="px-4 py-1.5 rounded-md text-[12px] font-medium transition-all"
+            className="btn-primary px-4 py-1.5 text-[12px]"
             style={{
-              color: isValid ? "#fff" : "var(--text-tertiary)",
-              background: isValid ? "var(--accent)" : "var(--surface-2)",
+              opacity: isValid ? 1 : 0.4,
               cursor: isValid ? "pointer" : "not-allowed",
-              opacity: isValid ? 1 : 0.5,
-            }}
-            onMouseEnter={(e) => {
-              if (isValid) e.currentTarget.style.background = "var(--accent-hover)";
-            }}
-            onMouseLeave={(e) => {
-              if (isValid) e.currentTarget.style.background = "var(--accent)";
             }}
           >
             Confirm

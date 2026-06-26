@@ -90,6 +90,30 @@ function highlightMatches(text: string, query: string): React.ReactNode {
 }
 
 const ESTIMATED_ROW_HEIGHT = 22;
+const INDENT_WIDTH = 20;
+
+/* ── Indent Guides ──────────────────────────────────────── */
+
+function IndentGuides({ depth, leftOffset }: { depth: number; leftOffset: number }) {
+  if (depth <= 0) return null;
+  return (
+    <>
+      {Array.from({ length: depth }, (_, i) => {
+        const isLast = i === depth - 1;
+        return (
+          <span
+            key={i}
+            className={`tree-indent-guide${isLast ? " active" : ""}`}
+            style={{
+              left: leftOffset + 9 + i * INDENT_WIDTH,
+              background: isLast ? "var(--accent-soft)" : "var(--border-default)",
+            }}
+          />
+        );
+      })}
+    </>
+  );
+}
 
 function Attrs({ attrs, highlightQuery }: { attrs: Record<string, string>; highlightQuery?: string }) {
   return (
@@ -207,7 +231,7 @@ export function XmlTreeView({ elements, expandSignal = 0, wordWrap = false, high
           if (!item) return null;
           const { element: el, depth } = item;
           const lineNum = row.index + 1;
-          const indent = depth * 20;
+          const indent = depth * INDENT_WIDTH;
 
           if (item.type === "closing") {
             return (
@@ -222,6 +246,7 @@ export function XmlTreeView({ elements, expandSignal = 0, wordWrap = false, high
                   transform: `translateY(${row.start}px)`,
                 }}
               >
+                <IndentGuides depth={depth} leftOffset={lineNumWidth} />
                 <LineNum num={lineNum} width={lineNumWidth} />
                 <span className={contentClass}>
                   <span style={{ paddingLeft: indent }} />
@@ -253,6 +278,7 @@ export function XmlTreeView({ elements, expandSignal = 0, wordWrap = false, high
               onMouseLeave={() => setCopiedState(null)}
               onClick={() => isExpandable && toggleExpand(el.id)}
             >
+              <IndentGuides depth={depth} leftOffset={lineNumWidth} />
               <LineNum num={lineNum} width={lineNumWidth} />
 
               {copiedState === el.id && el.node_type === "element" && (
@@ -409,7 +435,7 @@ function XmlActionBtn({
         lineHeight: "14px",
         cursor: "pointer",
         userSelect: "none",
-        transition: "background 0.12s ease, color 0.12s ease",
+        transition: "background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease",
       }}
     >
       {label}

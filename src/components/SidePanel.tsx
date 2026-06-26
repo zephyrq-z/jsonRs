@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState, useCallback } from "react";
 import type { FileTab, SearchResult, RecentFile } from "../types";
 import { formatSize } from "@/utils/format";
 
@@ -27,15 +28,53 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 }
 
 export function SidePanel({ tab, searchResults, onSearchResultClick }: SidePanelProps) {
+  const asideRef = useRef<HTMLDivElement>(null);
+  const [showTopShadow, setShowTopShadow] = useState(false);
+  const [showBottomShadow, setShowBottomShadow] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = asideRef.current;
+    if (!el) return;
+    setShowTopShadow(el.scrollTop > 4);
+    setShowBottomShadow(el.scrollTop + el.clientHeight < el.scrollHeight - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = asideRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    return () => el.removeEventListener("scroll", checkScroll);
+  }, [checkScroll, tab, searchResults]);
+
   return (
     <aside
+      ref={asideRef}
       className="shrink-0 overflow-y-auto select-none"
       style={{
         width: 210,
         borderRight: "1px solid var(--border-subtle)",
         background: "var(--surface-1)",
+        position: "relative",
       }}
     >
+      {/* Scroll shadow top */}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 12,
+          background: showTopShadow
+            ? "linear-gradient(to bottom, var(--surface-1), transparent)"
+            : "transparent",
+          pointerEvents: "none",
+          zIndex: 2,
+          transition: "background 0.2s ease",
+        }}
+      />
+
       {/* File info */}
       <div className="sidebar-section">
         <SectionTitle>File Info</SectionTitle>
@@ -136,6 +175,24 @@ export function SidePanel({ tab, searchResults, onSearchResultClick }: SidePanel
           ))}
         </div>
       </div>
+
+      {/* Scroll shadow bottom */}
+      <div
+        style={{
+          position: "sticky",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 12,
+          background: showBottomShadow
+            ? "linear-gradient(to top, var(--surface-1), transparent)"
+            : "transparent",
+          pointerEvents: "none",
+          zIndex: 2,
+          transition: "background 0.2s ease",
+        }}
+      />
     </aside>
   );
 }
+

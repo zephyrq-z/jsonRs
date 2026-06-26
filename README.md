@@ -3,9 +3,11 @@
 </p>
 
 <p align="center">
+  <img src="src-tauri/icons/icon.png" width="128" height="128" alt="jsonRs" />
   <h1 align="center">jsonRs</h1>
   <p align="center">
-    A lightweight, blazing-fast JSON / XML desktop viewer built with Tauri 2 + React 19.
+    A lightweight, blazing-fast JSON / XML desktop viewer with <strong>ROG neon aesthetics</strong>.<br/>
+    Built with Tauri 2 + React 19.
   </p>
   <p align="center">
     <img src="https://img.shields.io/badge/Tauri-2-FFC131?logo=tauri&logoColor=white" alt="Tauri 2" />
@@ -14,24 +16,38 @@
     <img src="https://img.shields.io/badge/Rust-1.70+-DEA584?logo=rust&logoColor=white" alt="Rust" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" />
     <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License" />
+    <img src="https://img.shields.io/badge/theme-ROG_NEON-ff2d95" alt="ROG Neon" />
   </p>
 </p>
 
 ## ✨ Features
 
-- **🌲 Tree View** — Collapsible, syntax-highlighted JSON / XML tree with search highlighting
+- **🌲 Tree View** — Collapsible, syntax-highlighted JSON / XML tree with search highlighting and indent guides
 - **📝 Text View** — Virtual-scrolled plain text with line numbers
-- **🔀 Split View** — Side-by-side tree + text view
+- **🔀 Split View** — Side-by-side tree + text view with draggable neon divider
 - **🔍 Full-Text Search** — Regex, case-sensitive, whole-word with inline highlighting in tree, text, and split views
 - **📂 Multi-Tab** — Open multiple files, drag-and-drop, clipboard paste
 - **⚡ Large File Support** — 50 MB+ files with shallow parsing and on-demand expansion
-- **🎨 Dark / Light Theme** — System preference with manual toggle
+- **🎨 ROG Neon Theme** — Cyberpunk-inspired dark mode with RGB flowing borders, neon glow effects, pulsing animations, scan lines, and glass morphism. Light mode also available.
 - **⌨️ Keyboard Shortcuts** — ⌘O open, ⌘F search, ⌘G go to line, ⌘W close tab, ⌘⇧T toggle theme
 - **🔒 Privacy-First** — Fully offline, no telemetry, no network calls
 
+## 🎮 ROG Neon Design
+
+Dark mode transforms jsonRs into a cyberpunk-inspired viewer:
+
+- **RGB Flowing Borders** — Animated gradient borders on dialogs and panels
+- **Neon Glow Effects** — Pulsing glow on active buttons, search focus, and status indicators
+- **Indent Guides** — Subtle neon-lit vertical lines connecting parent-child nodes in tree views
+- **Glass Morphism** — Frosted glass tooltips and dialogs with backdrop blur
+- **Scan Lines** — Subtle CRT-like scan line overlay in dark mode
+- **Ripple Effects** — Material-inspired click ripples on toolbar buttons
+- **Skeleton Loading** — Neon-shimmer placeholders while files load
+- **Neon Pink / Cyan / Purple / Green** — Vibrant cyberpunk color palette
+
 ## 📸 Screenshots
 
-> _Screenshots coming soon — run `pnpm tauri dev` to see it in action!_
+> _Screenshots coming soon — run `pnpm tauri dev` to see the ROG neon theme in action!_
 
 ## 🚀 Quick Start
 
@@ -77,7 +93,7 @@ jsonRs/
 ├── src/                        # React frontend
 │   ├── App.tsx                 # Root component (state, shortcuts, DnD, search)
 │   ├── main.tsx                # React entry point
-│   ├── index.css               # Tailwind v4 theme + custom styles
+│   ├── index.css               # ROG neon theme + Tailwind v4 + custom styles
 │   ├── types/index.ts          # Shared TypeScript types
 │   ├── hooks/
 │   │   ├── useFileTabs.ts      # Multi-tab state management
@@ -85,25 +101,27 @@ jsonRs/
 │   │   ├── useKeyboardShortcuts.ts  # Global keyboard bindings
 │   │   └── useClipboardPaste.ts     # Automatic clipboard paste
 │   ├── context/
-│   │   └── TooltipContext.tsx   # Floating tooltip system
+│   │   ├── TooltipContext.tsx   # Floating tooltip system
+│   │   └── ToastContext.tsx     # Toast notification system
 │   └── components/
-│       ├── JsonTreeView.tsx     # JSON tree (collapsible, highlighted, search)
-│       ├── XmlTreeView.tsx      # XML tree (elements/attrs/CDATA/comments, search)
+│       ├── JsonTreeView.tsx     # JSON tree (collapsible, indent guides, search)
+│       ├── XmlTreeView.tsx      # XML tree (elements/attrs/CDATA/comments, indent guides)
 │       ├── TextViewer.tsx       # Virtual-scrolled text (line numbers, search)
-│       ├── SplitPane.tsx        # Draggable tree+text split view
-│       ├── Toolbar.tsx          # Top toolbar (open, paste, format, expand, theme)
-│       ├── TabBar.tsx           # Tab navigation
-│       ├── SidePanel.tsx        # Sidebar (file info, search results, shortcuts)
-│       ├── SearchBar.tsx        # Search input (regex, case, word, nav)
-│       ├── StatusBar.tsx        # Bottom status bar
-│       ├── PasteDialog.tsx      # Paste content modal
+│       ├── SplitPane.tsx        # Draggable split view with neon grip
+│       ├── Toolbar.tsx          # Top toolbar (neon glow, ripple effects)
+│       ├── TabBar.tsx           # Tab navigation with neon accents
+│       ├── SidePanel.tsx        # Sidebar (file info, scroll shadows, results)
+│       ├── SearchBar.tsx        # Search input (neon focus glow, regex, nav)
+│       ├── StatusBar.tsx        # Bottom status bar with breathing indicator
+│       ├── PasteDialog.tsx      # Paste modal (glass morphism + RGB border)
 │       ├── GoToLineDialog.tsx   # Go to line modal
 │       ├── ErrorBoundary.tsx    # React error boundary
-│       └── Placeholders.tsx     # Empty state + loading spinner
+│       └── Placeholders.tsx     # Empty state + skeleton loading
 │
 ├── src-tauri/                  # Rust backend
 │   ├── Cargo.toml
 │   ├── tauri.conf.json
+│   ├── icons/                  # ROG neon app icon
 │   ├── capabilities/default.json
 │   └── src/
 │       ├── main.rs             # Binary entry
@@ -128,6 +146,7 @@ jsonRs/
 | **Rust-side parsing** | `serde_json` + `quick-xml` are orders of magnitude faster than JS parsers |
 | **Virtual scrolling** | `@tanstack/react-virtual` renders only visible rows — handles 1M+ line files |
 | **System theme detection** | `prefers-color-scheme` media query with manual override |
+| **ROG neon dark theme** | Cyberpunk-inspired design with RGB animations, neon glow, and glass morphism |
 
 ## ⌨️ Keyboard Shortcuts
 

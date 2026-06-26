@@ -3,9 +3,11 @@
 </p>
 
 <p align="center">
+  <img src="src-tauri/icons/icon.png" width="128" height="128" alt="jsonRs" />
   <h1 align="center">jsonRs</h1>
   <p align="center">
-    轻量级、极速的 JSON / XML 桌面查看器，基于 Tauri 2 + React 19 构建。
+    轻量级、极速的 JSON / XML 桌面查看器，搭载 <strong>ROG 霓虹美学</strong> 设计。<br/>
+    基于 Tauri 2 + React 19 构建。
   </p>
   <p align="center">
     <img src="https://img.shields.io/badge/Tauri-2-FFC131?logo=tauri&logoColor=white" alt="Tauri 2" />
@@ -14,24 +16,38 @@
     <img src="https://img.shields.io/badge/Rust-1.70+-DEA584?logo=rust&logoColor=white" alt="Rust" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" />
     <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License" />
+    <img src="https://img.shields.io/badge/theme-ROG_NEON-ff2d95" alt="ROG Neon" />
   </p>
 </p>
 
 ## ✨ 特性
 
-- **🌲 树形视图** — 可折叠、语法高亮的 JSON / XML 树，支持搜索高亮
+- **🌲 树形视图** — 可折叠、语法高亮的 JSON / XML 树，支持搜索高亮和缩进引导线
 - **📝 文本视图** — 虚拟滚动纯文本查看器，带行号
-- **🔀 分屏视图** — 树 + 文本并排显示，可拖拽调整比例
+- **🔀 分屏视图** — 树 + 文本并排显示，可拖拽霓虹分割条调整比例
 - **🔍 全文搜索** — 正则、区分大小写、全词匹配，树/文本/分屏视图均支持内联高亮
 - **📂 多标签页** — 同时打开多个文件，支持拖拽和剪贴板粘贴
 - **⚡ 大文件支持** — 50 MB+ 文件浅层解析，按需展开子节点
-- **🎨 深色/浅色主题** — 跟随系统偏好，手动切换
+- **🎨 ROG 霓虹主题** — 赛博朋克风格暗色模式：RGB 流光边框、霓虹发光效果、脉冲动画、扫描线、玻璃拟态。同时支持浅色模式。
 - **⌨️ 快捷键** — ⌘O 打开、⌘F 搜索、⌘G 跳行、⌘W 关闭标签、⌘⇧T 切换主题
 - **🔒 隐私优先** — 完全离线，无遥测，无网络请求
 
+## 🎮 ROG 霓虹设计
+
+暗色模式将 jsonRs 变身为赛博朋克风格查看器：
+
+- **RGB 流光边框** — 对话框和面板上的动画渐变边框
+- **霓虹发光效果** — 激活按钮、搜索聚焦、状态指示器的脉冲发光
+- **缩进引导线** — 树视图中的微妙霓虹竖线连接父子节点
+- **玻璃拟态** — 毛玻璃工具提示和对话框，带背景模糊
+- **扫描线** — 暗色模式下微妙的 CRT 风格扫描线覆盖层
+- **波纹效果** — 工具栏按钮点击时的 Material 风格扩散波纹
+- **骨架屏加载** — 文件加载时的霓虹微光占位符
+- **霓虹粉 / 青 / 紫 / 绿** — 鲜艳的赛博朋克色彩调色板
+
 ## 📸 截图
 
-> _截图即将更新 — 运行 `pnpm tauri dev` 立即体验！_
+> _截图即将更新 — 运行 `pnpm tauri dev` 立即体验 ROG 霓虹主题！_
 
 ## 🚀 快速开始
 
@@ -77,7 +93,7 @@ jsonRs/
 ├── src/                        # React 前端
 │   ├── App.tsx                 # 根组件（状态管理、快捷键、拖拽、搜索）
 │   ├── main.tsx                # React 入口
-│   ├── index.css               # Tailwind v4 主题 + 自定义样式
+│   ├── index.css               # ROG 霓虹主题 + Tailwind v4 + 自定义样式
 │   ├── types/index.ts          # 共享 TypeScript 类型
 │   ├── hooks/
 │   │   ├── useFileTabs.ts      # 多标签页状态管理
@@ -85,25 +101,27 @@ jsonRs/
 │   │   ├── useKeyboardShortcuts.ts  # 全局键盘快捷键
 │   │   └── useClipboardPaste.ts     # 自动剪贴板粘贴
 │   ├── context/
-│   │   └── TooltipContext.tsx   # 浮层提示系统
+│   │   ├── TooltipContext.tsx   # 浮层提示系统
+│   │   └── ToastContext.tsx     # Toast 通知系统
 │   └── components/
-│       ├── JsonTreeView.tsx     # JSON 树（可折叠、高亮、搜索）
-│       ├── XmlTreeView.tsx      # XML 树（元素/属性/CDATA/注释、搜索）
+│       ├── JsonTreeView.tsx     # JSON 树（可折叠、缩进引导线、搜索高亮）
+│       ├── XmlTreeView.tsx      # XML 树（元素/属性/CDATA/注释、缩进引导线）
 │       ├── TextViewer.tsx       # 虚拟滚动文本（行号、搜索）
-│       ├── SplitPane.tsx        # 可拖拽分屏视图
-│       ├── Toolbar.tsx          # 顶部工具栏（打开、粘贴、格式化、展开、主题）
-│       ├── TabBar.tsx           # 标签页导航
-│       ├── SidePanel.tsx        # 侧边栏（文件信息、搜索结果、快捷键）
-│       ├── SearchBar.tsx        # 搜索输入（正则、大小写、全词、导航）
-│       ├── StatusBar.tsx        # 底部状态栏
-│       ├── PasteDialog.tsx      # 粘贴内容对话框
+│       ├── SplitPane.tsx        # 可拖拽分屏视图（霓虹拖拽条）
+│       ├── Toolbar.tsx          # 顶部工具栏（霓虹发光、波纹效果）
+│       ├── TabBar.tsx           # 标签页导航（霓虹强调色）
+│       ├── SidePanel.tsx        # 侧边栏（文件信息、滚动阴影、搜索结果）
+│       ├── SearchBar.tsx        # 搜索输入（霓虹聚焦发光、正则、导航）
+│       ├── StatusBar.tsx        # 底部状态栏（呼吸灯指示器）
+│       ├── PasteDialog.tsx      # 粘贴对话框（玻璃拟态 + RGB 边框）
 │       ├── GoToLineDialog.tsx   # 跳转到行对话框
 │       ├── ErrorBoundary.tsx    # React 错误边界
-│       └── Placeholders.tsx     # 空状态 + 加载动画
+│       └── Placeholders.tsx     # 空状态 + 骨架屏加载
 │
 ├── src-tauri/                  # Rust 后端
 │   ├── Cargo.toml
 │   ├── tauri.conf.json
+│   ├── icons/                  # ROG 霓虹应用图标
 │   ├── capabilities/default.json
 │   └── src/
 │       ├── main.rs             # 二进制入口
@@ -128,6 +146,7 @@ jsonRs/
 | **Rust 端解析** | `serde_json` + `quick-xml` 比 JS 解析器快几个数量级 |
 | **虚拟滚动** | `@tanstack/react-virtual` 仅渲染可见行，可处理 100 万+ 行文件 |
 | **系统主题检测** | `prefers-color-scheme` 媒体查询 + 手动覆盖 |
+| **ROG 霓虹暗色主题** | 赛博朋克风格设计，RGB 动画、霓虹发光、玻璃拟态 |
 
 ## ⌨️ 快捷键
 

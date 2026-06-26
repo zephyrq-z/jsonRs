@@ -39,6 +39,7 @@ function ToggleButton({
         color: active ? "var(--accent)" : "var(--text-tertiary)",
         background: active ? "var(--accent-subtle)" : "transparent",
         border: active ? "1px solid var(--accent)" : "1px solid transparent",
+        boxShadow: active ? "0 0 5px var(--accent-glow)" : "none",
       }}
     >
       {children}
@@ -74,17 +75,20 @@ export function SearchBar({ onSearch, onClose, resultCount, currentIndex, onNavi
     return () => clearTimeout(id);
   }, [query, caseSensitive, useRegex, wholeWord]);
 
+  const hasResults = resultCount > 0;
+
   return (
     <div
-      className="flex items-center gap-2 px-4 shrink-0 animate-slide-in-right"
+      className="flex items-center gap-2 px-5 shrink-0 animate-slide-in-down"
       style={{
         height: 36,
         borderBottom: "1px solid var(--border-subtle)",
+        overflow: "hidden",
       }}
     >
       {/* Input */}
       <div
-        className="flex items-center gap-2 flex-1 rounded-md px-2.5 transition-all duration-150"
+        className="search-input-wrap flex items-center gap-2 flex-1 rounded-md px-2.5 transition-all duration-150"
         style={{
           height: 28,
           background: "var(--surface-0)",
@@ -122,10 +126,13 @@ export function SearchBar({ onSearch, onClose, resultCount, currentIndex, onNavi
 
       {/* Result count */}
       <span
-        className="text-[11px] tabular-nums shrink-0 min-w-[52px] text-right font-medium"
-        style={{ color: "var(--text-tertiary)" }}
+        className="text-[11px] tabular-nums shrink-0 min-w-[52px] text-right font-semibold"
+        style={{
+          color: hasResults ? "var(--accent)" : "var(--text-tertiary)",
+          textShadow: hasResults ? "0 0 6px var(--accent-glow)" : "none",
+        }}
       >
-        {resultCount > 0
+        {hasResults
           ? `${currentIndex + 1} / ${resultCount}`
           : query
             ? "0"

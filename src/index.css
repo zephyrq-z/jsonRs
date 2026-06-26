@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ========================================
-   Design Tokens — Warm, soft, refined
+   ROG Neon Design System
    ======================================== */
 
 :root {
@@ -11,7 +11,7 @@
   --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", "Fira Code",
     Menlo, Monaco, Consolas, monospace;
 
-  /* Surfaces — warm stone with subtle lavender undertone */
+  /* ── Light Mode: Warm stone with subtle neon accents ── */
   --surface-0: #faf9f8;
   --surface-1: #f4f2f0;
   --surface-2: #ece9e6;
@@ -19,23 +19,26 @@
   --surface-elevated: #ffffff;
   --surface-glass: rgba(255, 255, 255, 0.72);
 
-  /* Text — warm, not harsh */
   --text-primary: #1e1b2e;
   --text-secondary: #5c5770;
   --text-tertiary: #8e889e;
   --text-placeholder: #b8b2be;
 
-  /* Borders */
   --border-subtle: rgba(0, 0, 0, 0.04);
   --border-default: rgba(0, 0, 0, 0.07);
   --border-strong: rgba(0, 0, 0, 0.10);
 
-  /* Accent — rich indigo-violet */
-  --accent: #6c5ce7;
-  --accent-hover: #5a4bd1;
-  --accent-soft: #a29bfe;
-  --accent-subtle: rgba(108, 92, 231, 0.06);
-  --accent-glow: rgba(108, 92, 231, 0.12);
+  /* ROG Neon accents */
+  --accent: #c7246b;
+  --accent-hover: #e62d7e;
+  --accent-soft: #f472b6;
+  --accent-subtle: rgba(199, 36, 107, 0.06);
+  --accent-glow: rgba(199, 36, 107, 0.15);
+
+  --neon-pink: #ff2d95;
+  --neon-cyan: #00c8e0;
+  --neon-purple: #9b30ff;
+  --neon-green: #2ecc71;
 
   /* Semantic */
   --success: #00b894;
@@ -45,17 +48,17 @@
   --danger: #e17055;
   --danger-subtle: rgba(225, 112, 85, 0.07);
 
-  /* JSON syntax — warm & distinct */
-  --json-key: #2667a8;
+  /* JSON syntax */
+  --json-key: #1a6fb5;
   --json-string: #0d7377;
   --json-number: #e17055;
-  --json-boolean: #6c5ce7;
+  --json-boolean: #9b30ff;
   --json-null: #8e889e;
   --json-bracket: #3d3a4a;
 
   /* XML syntax */
   --xml-tag: #1e7a5a;
-  --xml-attr: #2667a8;
+  --xml-attr: #1a6fb5;
   --xml-value: #0d7377;
   --xml-comment: #8e889e;
   --xml-cdata: #c4841a;
@@ -82,6 +85,7 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
   --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-neon: 0 0 8px rgba(199, 36, 107, 0.3), 0 0 20px rgba(199, 36, 107, 0.1);
 
   /* Radii */
   --radius-sm: 5px;
@@ -90,60 +94,183 @@
   --radius-xl: 14px;
 }
 
+/* ========================================
+   Dark Mode — True ROG Experience
+   ======================================== */
+
 .dark {
-  --surface-0: #111119;
-  --surface-1: #161620;
-  --surface-2: #1c1c28;
-  --surface-3: #232332;
-  --surface-elevated: #1a1a26;
-  --surface-glass: rgba(17, 17, 25, 0.78);
+  --surface-0: #08080d;
+  --surface-1: #0d0d15;
+  --surface-2: #13131e;
+  --surface-3: #1a1a2a;
+  --surface-elevated: #11111c;
+  --surface-glass: rgba(13, 13, 21, 0.82);
 
-  --text-primary: #e6e4f0;
-  --text-secondary: #9a96aa;
-  --text-tertiary: #6e6a7e;
-  --text-placeholder: #4e4a5e;
+  --text-primary: #e8e6f0;
+  --text-secondary: #a09ab8;
+  --text-tertiary: #6e6a82;
+  --text-placeholder: #4a465a;
 
-  --border-subtle: rgba(255, 255, 255, 0.035);
-  --border-default: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.10);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
 
-  --accent: #a29bfe;
-  --accent-hover: #b8b1ff;
-  --accent-soft: #7c73e6;
-  --accent-subtle: rgba(162, 155, 254, 0.07);
-  --accent-glow: rgba(162, 155, 254, 0.10);
+  --accent: #ff2d95;
+  --accent-hover: #ff4daa;
+  --accent-soft: #ff6bb8;
+  --accent-subtle: rgba(255, 45, 149, 0.08);
+  --accent-glow: rgba(255, 45, 149, 0.20);
 
-  --success: #55efc4;
-  --success-subtle: rgba(85, 239, 196, 0.07);
-  --warning: #ffeaa7;
-  --warning-subtle: rgba(255, 234, 167, 0.10);
-  --danger: #fab1a0;
-  --danger-subtle: rgba(250, 177, 160, 0.07);
+  --neon-pink: #ff2d95;
+  --neon-cyan: #00e5ff;
+  --neon-purple: #b44dff;
+  --neon-green: #39ff14;
+
+  --success: #39ff14;
+  --success-subtle: rgba(57, 255, 20, 0.08);
+  --warning: #ffb800;
+  --warning-subtle: rgba(255, 184, 0, 0.12);
+  --danger: #ff4466;
+  --danger-subtle: rgba(255, 68, 102, 0.08);
 
   --json-key: #74b9ff;
-  --json-string: #55efc4;
-  --json-number: #fab1a0;
-  --json-boolean: #a29bfe;
-  --json-null: #6e6a7e;
+  --json-string: #39ff14;
+  --json-number: #ff6b8a;
+  --json-boolean: #b44dff;
+  --json-null: #6e6a82;
   --json-bracket: #c8c4d8;
 
-  --xml-tag: #55efc4;
+  --xml-tag: #39ff14;
   --xml-attr: #74b9ff;
-  --xml-value: #81ecec;
-  --xml-comment: #6e6a7e;
-  --xml-cdata: #ffeaa7;
+  --xml-value: #00e5ff;
+  --xml-comment: #6e6a82;
+  --xml-cdata: #ffb800;
 
-  --search-match: rgba(255, 234, 167, 0.20);
-  --search-match-active: #fab1a0;
+  --search-match: rgba(255, 184, 0, 0.25);
+  --search-match-active: #ff4466;
 
-  --scrollbar-thumb: rgba(255, 255, 255, 0.06);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.12);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.08);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.16);
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.20);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.20);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.30), 0 1px 3px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.40), 0 2px 6px rgba(0, 0, 0, 0.30);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.40), 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.50), 0 2px 6px rgba(0, 0, 0, 0.40);
   --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-neon: 0 0 10px rgba(255, 45, 149, 0.4), 0 0 30px rgba(255, 45, 149, 0.15), 0 0 60px rgba(180, 77, 255, 0.08);
+}
+
+/* ========================================
+   RGB Flow Animations
+   ======================================== */
+
+@keyframes rgbFlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+@keyframes rgbFlowBorder {
+  0%   { border-color: var(--neon-pink); }
+  25%  { border-color: var(--neon-purple); }
+  50%  { border-color: var(--neon-cyan); }
+  75%  { border-color: var(--neon-green); }
+  100% { border-color: var(--neon-pink); }
+}
+
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 4px var(--accent-glow), 0 0 8px var(--accent-glow); }
+  50%      { box-shadow: 0 0 8px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px rgba(255, 45, 149, 0.08); }
+}
+
+@keyframes neonPulseStrong {
+  0%, 100% { box-shadow: 0 0 6px var(--accent-glow), 0 0 12px var(--accent-glow); }
+  50%      { box-shadow: 0 0 12px var(--accent-glow), 0 0 30px var(--accent-glow), 0 0 60px rgba(255, 45, 149, 0.12); }
+}
+
+@keyframes neonBreathe {
+  0%, 100% { opacity: 0.5; box-shadow: 0 0 3px currentColor; }
+  50%      { opacity: 1;   box-shadow: 0 0 8px currentColor, 0 0 16px currentColor; }
+}
+
+@keyframes rgbShift {
+  0%   { background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan)); }
+  25%  { background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan), var(--neon-green)); }
+  50%  { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green), var(--neon-pink)); }
+  75%  { background: linear-gradient(135deg, var(--neon-green), var(--neon-pink), var(--neon-purple)); }
+  100% { background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan)); }
+}
+
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes rippleEffect {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes borderGlowPulse {
+  0%, 100% { border-color: var(--accent); box-shadow: 0 0 4px var(--accent-glow); }
+  50%      { border-color: var(--neon-purple); box-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(180, 77, 255, 0.15); }
+}
+
+/* ========================================
+   RGB Border — pseudo-element trick
+   ======================================== */
+
+.rgb-border {
+  position: relative;
+}
+
+.rgb-border::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--neon-pink),
+    var(--neon-purple),
+    var(--neon-cyan),
+    var(--neon-green),
+    var(--neon-pink)
+  );
+  background-size: 300% 100%;
+  animation: rgbFlow 4s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.rgb-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  z-index: -1;
+}
+
+/* ========================================
+   Neon Glow Border — for interactive focus
+   ======================================== */
+
+.neon-glow:focus-within,
+.neon-glow:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 6px var(--accent-glow), 0 0 20px var(--accent-glow) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.neon-glow-hover:hover {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 4px var(--accent-glow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* ========================================
@@ -151,8 +278,6 @@
    ======================================== */
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -169,8 +294,24 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle scan line overlay in dark mode */
+.dark #root::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.015) 2px,
+    rgba(0, 0, 0, 0.015) 4px
+  );
+}
+
 /* ========================================
-   Scrollbar — slim, subtle
+   Scrollbar — slim, neon subtle
    ======================================== */
 
 ::-webkit-scrollbar {
@@ -185,10 +326,16 @@ html, body, #root {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   border-radius: 3px;
+  transition: background 0.15s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-soft);
+  box-shadow: 0 0 4px var(--accent-glow);
 }
 
 ::-webkit-scrollbar-corner {
@@ -200,21 +347,50 @@ html, body, #root {
    ======================================== */
 
 ::selection {
-  background: rgba(108, 92, 231, 0.16);
+  background: rgba(255, 45, 149, 0.22);
+  color: var(--text-primary);
 }
 
 .dark ::selection {
-  background: rgba(162, 155, 254, 0.18);
+  background: rgba(255, 45, 149, 0.30);
+  color: #fff;
 }
 
 /* ========================================
-   Focus ring
+   Focus ring — neon glow
    ======================================== */
 
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
   border-radius: 2px;
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* ========================================
+   Ripple effect on click
+   ======================================== */
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.ripple:active::after {
+  animation: rippleEffect 0.5s ease-out;
 }
 
 /* ========================================
@@ -230,7 +406,7 @@ html, body, #root {
 }
 
 /* ========================================
-   Tree view — refined
+   Tree view — indent guides + neon
    ======================================== */
 
 .tree-node {
@@ -242,6 +418,40 @@ html, body, #root {
   display: inline-block;
   width: 20px;
   flex-shrink: 0;
+}
+
+/* Indent guide lines */
+.tree-indent-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  pointer-events: none;
+  opacity: 0.25;
+  transition: opacity 0.15s ease;
+}
+
+.dark .tree-indent-guide {
+  opacity: 0.18;
+}
+
+.tree-line:hover .tree-indent-guide {
+  opacity: 0.5;
+}
+
+.dark .tree-line:hover .tree-indent-guide {
+  opacity: 0.4;
+}
+
+/* Active indent guide — the one at current depth */
+.tree-indent-guide.active {
+  opacity: 0.6;
+  box-shadow: 0 0 3px var(--accent-glow);
+}
+
+.dark .tree-indent-guide.active {
+  opacity: 0.7;
+  box-shadow: 0 0 4px var(--accent-glow), 0 0 8px var(--accent-glow);
 }
 
 .tree-chevron {
@@ -258,7 +468,13 @@ html, body, #root {
 
 .tree-chevron:hover {
   background: var(--surface-2);
-  color: var(--text-secondary);
+  color: var(--accent);
+}
+
+.dark .tree-chevron:hover {
+  background: var(--surface-3);
+  color: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
 }
 
 .tree-chevron.expanded {
@@ -272,10 +488,15 @@ html, body, #root {
   border-radius: var(--radius-sm);
   min-height: 24px;
   transition: background 0.08s ease;
+  position: relative;
 }
 
 .tree-line:hover {
   background: var(--surface-2);
+}
+
+.dark .tree-line:hover {
+  background: var(--surface-3);
 }
 
 .tree-line .gutter {
@@ -309,6 +530,11 @@ html, body, #root {
   color: #fff;
   border-radius: 2px;
   padding: 0 1px;
+  box-shadow: 0 0 4px rgba(225, 112, 85, 0.4);
+}
+
+.dark .hl-match-active {
+  box-shadow: 0 0 6px rgba(255, 68, 102, 0.5);
 }
 
 /* ========================================
@@ -325,6 +551,10 @@ html, body, #root {
 
 .jsonl-line:hover {
   background: var(--surface-2);
+}
+
+.dark .jsonl-line:hover {
+  background: var(--surface-3);
 }
 
 /* ========================================
@@ -351,6 +581,11 @@ html, body, #root {
   to { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-6px); max-height: 0; }
+  to { opacity: 1; transform: translateY(0); max-height: 40px; }
+}
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -363,7 +598,32 @@ html, body, #root {
 
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
-  50% { box-shadow: 0 0 0 6px transparent; }
+  50% { box-shadow: 0 0 0 8px transparent; }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-4px); }
+}
+
+@keyframes tabSlideIn {
+  from { opacity: 0; transform: translateX(-12px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: -300px 0; }
+  100% { background-position: 300px 0; }
 }
 
 .animate-fade-in {
@@ -382,6 +642,10 @@ html, body, #root {
   animation: slideInRight 0.18s ease-out;
 }
 
+.animate-slide-in-down {
+  animation: slideInDown 0.2s ease-out;
+}
+
 .animate-spin {
   animation: spin 1s linear infinite;
 }
@@ -390,18 +654,24 @@ html, body, #root {
   animation: tooltipIn 0.12s ease-out;
 }
 
-@keyframes toastIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
 }
 
-@keyframes toastOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-4px); }
+.animate-tab-in {
+  animation: tabSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+.animate-neon-pulse-strong {
+  animation: neonPulseStrong 2s ease-in-out infinite;
 }
 
 /* ========================================
-   Toolbar buttons
+   Toolbar buttons — ROG neon
    ======================================== */
 
 .toolbar-btn {
@@ -410,7 +680,7 @@ html, body, #root {
   gap: 6px;
   padding: 6px 10px;
   border-radius: var(--radius-md);
-  transition: background 0.12s ease, color 0.12s ease;
+  transition: background 0.12s ease, color 0.12s ease, box-shadow 0.15s ease;
   cursor: pointer;
   color: var(--text-tertiary);
   font-size: 12px;
@@ -422,6 +692,8 @@ html, body, #root {
   font-family: var(--font-ui);
   line-height: 1;
   min-height: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
 .toolbar-btn:hover {
@@ -429,13 +701,62 @@ html, body, #root {
   color: var(--text-secondary);
 }
 
+.dark .toolbar-btn:hover {
+  background: var(--surface-3);
+  color: var(--text-primary);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
 .toolbar-btn:active {
   transform: scale(0.97);
+}
+
+/* Ripple on toolbar buttons */
+.toolbar-btn::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.toolbar-btn:active::after {
+  animation: rippleEffect 0.5s ease-out;
 }
 
 .toolbar-btn[data-active="true"] {
   background: var(--accent-subtle);
   color: var(--accent);
+}
+
+.dark .toolbar-btn[data-active="true"] {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow), inset 0 0 4px var(--accent-glow);
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+
+/* Primary action buttons (Open, Paste) */
+.toolbar-btn-primary {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.dark .toolbar-btn-primary {
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.toolbar-btn-primary:hover {
+  background: var(--accent-subtle) !important;
+}
+
+.dark .toolbar-btn-primary:hover {
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
 .toolbar-btn-label {
@@ -447,11 +768,15 @@ html, body, #root {
 
 /* Tab items */
 .tab-item {
-  transition: background 0.12s ease, color 0.12s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark .tab-item[data-active="true"] {
+  box-shadow: 0 -2px 8px var(--accent-glow);
 }
 
 /* ========================================
-   Dialog / Modal overlay
+   Dialog / Modal overlay — glass + neon
    ======================================== */
 
 .dialog-overlay {
@@ -461,26 +786,43 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   animation: fadeIn 0.15s ease-out;
 }
 
 .dark .dialog-overlay {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .dialog-panel {
-  background: var(--surface-elevated);
+  background: var(--surface-glass);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   animation: fadeInScale 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .dialog-panel {
+  background: var(--surface-glass);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg), var(--shadow-neon);
+  animation: fadeInScale 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modal with RGB border */
+.dialog-panel.rgb-border::before {
+  inset: -2px;
+  border-radius: var(--radius-xl);
 }
 
 /* ========================================
-   Floating tooltip
+   Floating tooltip — glass
    ======================================== */
 
 .floating-tooltip {
@@ -492,16 +834,20 @@ html, body, #root {
   font-family: var(--font-ui);
   line-height: 1.4;
   color: var(--text-primary);
-  background: var(--surface-elevated);
+  background: var(--surface-glass);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-md);
   white-space: nowrap;
   animation: tooltipIn 0.12s ease-out;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .dark .floating-tooltip {
-  background: var(--surface-3);
+  background: var(--surface-glass);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md), 0 0 8px var(--accent-glow);
 }
 
 /* ========================================
@@ -517,13 +863,18 @@ html, body, #root {
   border-radius: var(--radius-md);
   background: var(--surface-1);
   color: var(--text-primary);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .paste-textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-subtle);
+  box-shadow: 0 0 0 3px var(--accent-subtle), 0 0 12px var(--accent-glow);
+}
+
+.dark .paste-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle), 0 0 16px var(--accent-glow), 0 0 30px rgba(255, 45, 149, 0.08);
 }
 
 .paste-textarea::placeholder {
@@ -537,6 +888,7 @@ html, body, #root {
 .sidebar-section {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border-subtle);
+  position: relative;
 }
 
 .sidebar-section:last-child {
@@ -553,18 +905,323 @@ html, body, #root {
   user-select: none;
 }
 
+/* Sidebar scroll overflow shadows */
+.sidebar-scroll-top::before,
+.sidebar-scroll-bottom::after {
+  content: "";
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-scroll-top::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--surface-1), transparent);
+}
+
+.sidebar-scroll-bottom::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--surface-1), transparent);
+}
+
+.dark .sidebar-scroll-top::before {
+  background: linear-gradient(to bottom, var(--surface-1), transparent);
+}
+
+.dark .sidebar-scroll-bottom::after {
+  background: linear-gradient(to top, var(--surface-1), transparent);
+}
+
 /* ========================================
-   Empty state
+   Empty state — ROG welcome
    ======================================== */
 
+.empty-state {
+  background: var(--surface-0);
+}
+
+.dark .empty-state {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255, 45, 149, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 30% 70%, rgba(180, 77, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+    var(--surface-0);
+}
+
 .empty-state-icon {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   margin-bottom: 16px;
   opacity: 0.35;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.dark .empty-state-icon {
+  opacity: 0.5;
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+  animation: neonBreathe 3s ease-in-out infinite;
 }
 
 .empty-state:hover .empty-state-icon {
   opacity: 0.55;
+}
+
+.dark .empty-state:hover .empty-state-icon {
+  opacity: 0.7;
+  filter: drop-shadow(0 0 14px var(--accent-glow));
+}
+
+/* ========================================
+   Skeleton loading — neon shimmer
+   ======================================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 0%,
+    var(--surface-3) 40%,
+    var(--surface-2) 80%
+  );
+  background-size: 300px 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 0%,
+    rgba(255, 45, 149, 0.06) 40%,
+    var(--surface-2) 80%
+  );
+  background-size: 300px 100%;
+}
+
+/* ========================================
+   Status bar dot separator
+   ======================================== */
+
+.status-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Scan line animation (subtle CRT effect)
+   ======================================== */
+
+.dark .scan-line-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 45, 149, 0.008) 50%,
+    transparent 100%
+  );
+  animation: scanLine 8s linear infinite;
+}
+
+/* ========================================
+   Neon divider
+   ======================================== */
+
+.neon-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-default);
+  border-radius: 1px;
+  flex-shrink: 0;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark .neon-divider {
+  background: var(--border-strong);
+  box-shadow: 0 0 2px var(--accent-glow);
+}
+
+/* ========================================
+   Split pane divider — neon
+   ======================================== */
+
+.split-divider {
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  cursor: col-resize;
+  position: relative;
+}
+
+.split-divider:hover,
+.split-divider.active {
+  background: var(--accent) !important;
+  box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+}
+
+.dark .split-divider:hover,
+.dark .split-divider.active {
+  box-shadow: 0 0 14px var(--accent-glow), 0 0 30px var(--accent-glow), 0 0 50px rgba(255, 45, 149, 0.1);
+}
+
+/* Split divider grip dots */
+.split-divider-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.split-divider-grip-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.split-divider:hover .split-divider-grip-dot,
+.split-divider.active .split-divider-grip-dot {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* ========================================
+   Search bar focus glow
+   ======================================== */
+
+.search-input-wrap {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-wrap:focus-within {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 6px var(--accent-glow), 0 0 16px var(--accent-glow);
+}
+
+.dark .search-input-wrap:focus-within {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 8px var(--accent-glow), 0 0 24px var(--accent-glow), 0 0 40px rgba(255, 45, 149, 0.06);
+}
+
+/* ========================================
+   Format badge gradient
+   ======================================== */
+
+.format-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .format-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-subtle), rgba(180, 77, 255, 0.06));
+  pointer-events: none;
+}
+
+/* ========================================
+   Quick action cards (welcome page)
+   ======================================== */
+
+.quick-action-card {
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.quick-action-card:hover {
+  transform: translateY(-1px);
+}
+
+.dark .quick-action-card:hover {
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.dark .quick-action-card.accent-card:hover {
+  box-shadow: 0 0 16px var(--accent-glow), 0 0 30px rgba(255, 45, 149, 0.1);
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+
+/* ========================================
+   Button styles
+   ======================================== */
+
+.btn-primary {
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.dark .btn-primary:hover {
+  box-shadow: 0 0 16px var(--accent-glow), 0 0 30px rgba(255, 45, 149, 0.15);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Toast notification
+   ======================================== */
+
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-md);
+  animation: toastIn 0.2s ease-out;
+  pointer-events: none;
+}
+
+.dark .toast {
+  background: var(--surface-glass);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md), 0 0 10px var(--accent-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }

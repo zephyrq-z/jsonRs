@@ -47,12 +47,14 @@ function ToolBtn({
   tooltip,
   icon,
   label,
+  primary,
 }: {
   onClick: () => void;
   active?: boolean;
   tooltip: string;
   icon: React.ReactNode;
   label: string;
+  primary?: boolean;
 }) {
   const { show, hide } = useTooltip();
 
@@ -61,7 +63,7 @@ function ToolBtn({
       onClick={onClick}
       onMouseEnter={(e) => show(tooltip, e)}
       onMouseLeave={hide}
-      className="toolbar-btn"
+      className={`toolbar-btn${primary ? " toolbar-btn-primary" : ""}`}
       data-active={active ? "true" : undefined}
     >
       {icon}
@@ -71,18 +73,7 @@ function ToolBtn({
 }
 
 function Divider() {
-  return (
-    <div
-      className="mx-1"
-      style={{
-        width: 1,
-        height: 18,
-        background: "var(--border-default)",
-        borderRadius: 1,
-        flexShrink: 0,
-      }}
-    />
-  );
+  return <div className="neon-divider mx-1" />;
 }
 
 export function Toolbar({
@@ -111,15 +102,17 @@ export function Toolbar({
 
   return (
     <div
-      className="flex items-center shrink-0 px-3 gap-1"
+      className="flex items-center shrink-0"
       style={{
         height: "var(--toolbar-height)",
+        padding: "0 20px",
+        gap: 4,
         borderBottom: "1px solid var(--border-subtle)",
         background: "var(--surface-1)",
       }}
     >
-      <ToolBtn onClick={onOpenFile} tooltip="Open file (⌘O)" icon={<IconFolderOpen width={16} height={16} />} label="Open" />
-      <ToolBtn onClick={onPaste} tooltip="Paste from clipboard" icon={<IconPaste width={16} height={16} />} label="Paste" />
+      <ToolBtn primary onClick={onOpenFile} tooltip="Open file (⌘O)" icon={<IconFolderOpen width={16} height={16} />} label="Open" />
+      <ToolBtn primary onClick={onPaste} tooltip="Paste from clipboard" icon={<IconPaste width={16} height={16} />} label="Paste" />
       <Divider />
       <ToolBtn onClick={onToggleSearch} tooltip="Search (⌘F)" icon={<IconSearch width={16} height={16} />} label="Search" />
       <ToolBtn

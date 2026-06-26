@@ -35,7 +35,8 @@ export function TabBar({ tabs, activeTabId, onSelectTab, onCloseTab }: TabBarPro
         return (
           <div
             key={tab.id}
-            className="group flex items-center gap-1.5 cursor-pointer shrink-0 relative tab-item"
+            data-active={isActive ? "true" : undefined}
+            className="group flex items-center gap-1.5 cursor-pointer shrink-0 relative tab-item animate-tab-in"
             style={{
               height: "100%",
               padding: "0 14px",
@@ -45,6 +46,7 @@ export function TabBar({ tabs, activeTabId, onSelectTab, onCloseTab }: TabBarPro
               borderRight: "1px solid var(--border-subtle)",
               fontSize: 12,
               fontWeight: isActive ? 600 : 400,
+              transition: "background 0.15s ease, color 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease",
             }}
             onClick={() => onSelectTab(tab.id)}
             onMouseEnter={(e) => show(tab.path, e)}
@@ -61,11 +63,25 @@ export function TabBar({ tabs, activeTabId, onSelectTab, onCloseTab }: TabBarPro
             )}
 
             <button
-              className="shrink-0 flex items-center justify-center rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-              style={{ width: 18, height: 18, color: "var(--text-tertiary)" }}
+              className="shrink-0 flex items-center justify-center rounded opacity-0 group-hover:opacity-100 transition-all duration-150"
+              style={{
+                width: 18,
+                height: 18,
+                color: "var(--text-tertiary)",
+              }}
               onClick={(e) => { e.stopPropagation(); onCloseTab(tab.id); }}
-              onMouseEnter={(e) => { e.stopPropagation(); show("Close tab", e); }}
-              onMouseLeave={(e) => { e.stopPropagation(); hide(); }}
+              onMouseEnter={(e) => {
+                e.stopPropagation();
+                show("Close tab", e);
+                e.currentTarget.style.color = "var(--danger)";
+                e.currentTarget.style.background = "var(--danger-subtle)";
+              }}
+              onMouseLeave={(e) => {
+                e.stopPropagation();
+                hide();
+                e.currentTarget.style.color = "var(--text-tertiary)";
+                e.currentTarget.style.background = "transparent";
+              }}
             >
               <IconX width={10} height={10} />
             </button>
