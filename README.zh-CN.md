@@ -49,9 +49,9 @@
 
 <p align="center">
   <img src="screenshots/welcome.png" alt="欢迎页" width="400" />
-  <img src="screenshots/tree-view.png" alt="树形视图" width="400" />
-  <img src="screenshots/split-view.png" alt="分屏视图" width="400" />
-  <img src="screenshots/search.png" alt="搜索" width="400" />
+  <img src="screenshots/json-tree.png" alt="JSON 树形视图" width="400" />
+  <img src="screenshots/jsonl-view.png" alt="JSONL 视图" width="400" />
+  <img src="screenshots/paste-dialog.png" alt="粘贴对话框" width="400" />
   <img src="screenshots/dark-mode.png" alt="暗色模式" width="400" />
 </p>
 

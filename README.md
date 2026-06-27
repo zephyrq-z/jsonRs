@@ -49,9 +49,9 @@ Dark mode transforms jsonRs into a cyberpunk-inspired viewer:
 
 <p align="center">
   <img src="screenshots/welcome.png" alt="Welcome" width="400" />
-  <img src="screenshots/tree-view.png" alt="Tree View" width="400" />
-  <img src="screenshots/split-view.png" alt="Split View" width="400" />
-  <img src="screenshots/search.png" alt="Search" width="400" />
+  <img src="screenshots/json-tree.png" alt="JSON Tree" width="400" />
+  <img src="screenshots/jsonl-view.png" alt="JSONL View" width="400" />
+  <img src="screenshots/paste-dialog.png" alt="Paste Dialog" width="400" />
   <img src="screenshots/dark-mode.png" alt="Dark Mode" width="400" />
 </p>
 
