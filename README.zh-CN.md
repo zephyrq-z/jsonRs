@@ -47,7 +47,13 @@
 
 ## 📸 截图
 
-> _截图即将更新 — 运行 `pnpm tauri dev` 立即体验 ROG 霓虹主题！_
+<p align="center">
+  <img src="screenshots/welcome.png" alt="欢迎页" width="400" />
+  <img src="screenshots/tree-view.png" alt="树形视图" width="400" />
+  <img src="screenshots/split-view.png" alt="分屏视图" width="400" />
+  <img src="screenshots/search.png" alt="搜索" width="400" />
+  <img src="screenshots/dark-mode.png" alt="暗色模式" width="400" />
+</p>
 
 ## 🚀 快速开始
 

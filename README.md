@@ -47,7 +47,13 @@ Dark mode transforms jsonRs into a cyberpunk-inspired viewer:
 
 ## 📸 Screenshots
 
-> _Screenshots coming soon — run `pnpm tauri dev` to see the ROG neon theme in action!_
+<p align="center">
+  <img src="screenshots/welcome.png" alt="Welcome" width="400" />
+  <img src="screenshots/tree-view.png" alt="Tree View" width="400" />
+  <img src="screenshots/split-view.png" alt="Split View" width="400" />
+  <img src="screenshots/search.png" alt="Search" width="400" />
+  <img src="screenshots/dark-mode.png" alt="Dark Mode" width="400" />
+</p>
 
 ## 🚀 Quick Start
 
